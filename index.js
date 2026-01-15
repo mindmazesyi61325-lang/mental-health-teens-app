@@ -1,9 +1,15 @@
 const express = require("express");
+const path = require("path");
+
 const app = express();
 const PORT = 3000;
 
+// Serve static files from public folder
+app.use(express.static(path.join(__dirname, "public")));
+
+// Force root to load index.html
 app.get("/", (req, res) => {
-  res.send("Mental Health Teens App is running 💚");
+  res.sendFile(path.join(__dirname, "public", "index.html"));
 });
 
 app.listen(PORT, () => {
